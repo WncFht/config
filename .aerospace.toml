@@ -1,0 +1,204 @@
+# 您可以使用它来添加在登录到 macOS 用户会话后运行的命令。
+# 'start-at-login' 需要为 'true' 才能使 'after-login-command' 生效
+# 可用命令: https://nikitabobko.github.io/AeroSpace/commands
+after-login-command = []
+
+# 您可以使用它来添加在 AeroSpace 启动后运行的命令。
+# 'after-startup-command' 在 'after-login-command' 之后运行
+# 可用命令: https://nikitabobko.github.io/AeroSpace/commands
+after-startup-command = []
+
+# 在登录时启动 AeroSpace
+start-at-login = true
+
+# 标准化设置。参见: https://nikitabobko.github.io/AeroSpace/guide#normalization
+# 启用扁平化容器的标准化
+enable-normalization-flatten-containers = true
+# 启用嵌套容器的相反方向标准化
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+# 参见: https://nikitabobko.github.io/AeroSpace/guide#layouts
+# 'accordion-padding' 指定手风琴填充的大小
+# 您可以设置为 0 来禁用填充功能
+accordion-padding = 50
+
+# 可能的值: tiles|accordion
+# 默认根容器布局
+default-root-container-layout = 'tiles'
+
+# 可能的值: horizontal|vertical|auto
+# 'auto' 意味着: 宽显示器（任何宽度大于高度的）获得水平方向，
+#               高显示器（任何高度大于宽度的）获得垂直方向
+default-root-container-orientation = 'auto'
+
+# 当焦点显示器改变时，鼠标跟随焦点
+# 如果您不喜欢这种行为，请从配置中删除它
+# 参见 https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
+# 参见 https://nikitabobko.github.io/AeroSpace/commands#move-mouse
+# 回退值（如果您省略此键）: on-focused-monitor-changed = []
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
+# 您可以通过切换此标志来有效关闭 macOS "隐藏应用程序"（cmd-h）功能
+# 如果您不使用此 macOS 功能，但意外按下 cmd-h 或 cmd-alt-h 键，这很有用
+# 另请参见: https://nikitabobko.github.io/AeroSpace/goodies#disable-hide-app
+automatically-unhide-macos-hidden-apps = false
+
+# 如果窗口标题包含设置，则使用浮动布局
+[[on-window-detected]]
+if.window-title-regex-substring = '(setting|设置)'
+run = 'layout floating'
+
+# 如果窗口标题包含画中画，则使用浮动布局
+[[on-window-detected]]
+if.window-title-regex-substring = '(Picture-in-Picture|画中画)'
+run = 'layout floating'
+
+
+# 键盘映射设置
+# 可能的值: (qwerty|dvorak|colemak)
+# 参见 https://nikitabobko.github.io/AeroSpace/guide#key-mapping
+[key-mapping]
+    preset = 'qwerty'
+
+# 窗口之间的间隙（inner-*）和显示器边缘之间的间隙（outer-*）。
+# 可能的值:
+# - 常量:     gaps.outer.top = 8
+# - 按显示器:  gaps.outer.top = [{ monitor.main = 16 }, { monitor."some-pattern" = 32 }, 24]
+#             在此示例中，24 是没有匹配时的默认值。
+#             显示器模式与 'workspace-to-monitor-force-assignment' 相同。
+#             参见:
+#             https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
+[gaps]
+    inner.horizontal = 0  # 窗口之间的水平间隙
+    inner.vertical =   0  # 窗口之间的垂直间隙
+    outer.left =       0  # 左边缘间隙
+    outer.bottom =     0  # 底部边缘间隙
+    outer.top =        0  # 顶部边缘间隙
+    outer.right =      0  # 右边缘间隙
+
+# 'main' 绑定模式声明
+# 参见: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
+# 'main' 绑定模式必须始终存在
+# 回退值（如果您省略此键）: mode.main.binding = {}
+[mode.main.binding]
+
+    # 所有可能的键:
+    # - 字母.        a, b, c, ..., z
+    # - 数字.        0, 1, 2, ..., 9
+    # - 小键盘数字.   keypad0, keypad1, keypad2, ..., keypad9
+    # - F键.         f1, f2, ..., f20
+    # - 特殊键.       minus, equal, period, comma, slash, backslash, quote, semicolon,
+    #                backtick, leftSquareBracket, rightSquareBracket, space, enter, esc,
+    #                backspace, tab, pageUp, pageDown, home, end, forwardDelete,
+    #                sectionSign (仅限 ISO 键盘，仅限欧洲键盘)
+    # - 小键盘特殊键. keypadClear, keypadDecimalMark, keypadDivide, keypadEnter, keypadEqual,
+    #                keypadMinus, keypadMultiply, keypadPlus
+    # - 箭头键.       left, down, up, right
+
+    # 所有可能的修饰符: cmd, alt, ctrl, shift
+
+    # 所有可能的命令: https://nikitabobko.github.io/AeroSpace/commands
+
+    # 参见: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
+    # 您可以取消注释以下行以使用 alt + enter 快捷键打开终端
+    # （类似于 i3）
+    # alt-enter = '''exec-and-forget osascript -e '
+    # tell application "Terminal"
+    #     do script
+    #     activate
+    # end tell'
+    # '''
+    # alt-enter = 'exec-and-forget open -n /Applications/Ghostty.app'
+
+    alt-shift-enter = 'exec-and-forget open -n /Applications/iTerm.app'
+
+    # 参见: https://nikitabobko.github.io/AeroSpace/commands#layout
+    alt-slash = 'layout tiles horizontal vertical'    # 切换平铺布局（水平/垂直）
+    alt-comma = 'layout accordion horizontal vertical' # 切换手风琴布局（水平/垂直）
+
+    # 参见: https://nikitabobko.github.io/AeroSpace/commands#focus
+    # 焦点移动快捷键
+    alt-h = 'focus left'   # 焦点移动到左侧窗口
+    alt-j = 'focus down'   # 焦点移动到下方窗口
+    alt-k = 'focus up'     # 焦点移动到上方窗口
+    alt-l = 'focus right'  # 焦点移动到右侧窗口
+
+    # 参见: https://nikitabobko.github.io/AeroSpace/commands#move
+    # 窗口移动快捷键
+    alt-shift-h = 'move left'   # 将窗口移动到左侧
+    alt-shift-j = 'move down'   # 将窗口移动到下方
+    alt-shift-k = 'move up'     # 将窗口移动到上方
+    alt-shift-l = 'move right'  # 将窗口移动到右侧
+
+    # 参见: https://nikitabobko.github.io/AeroSpace/commands#resize
+    # 窗口大小调整快捷键
+    alt-minus = 'resize smart -50'  # 智能缩小窗口
+    alt-equal = 'resize smart +50'  # 智能放大窗口
+
+    # 参见: https://nikitabobko.github.io/AeroSpace/commands#workspace
+    # 工作区切换快捷键
+    alt-1 = 'workspace 1'  # 切换到工作区 1
+    alt-2 = 'workspace 2'  # 切换到工作区 2
+    alt-3 = 'workspace 3'  # 切换到工作区 3
+    alt-4 = 'workspace 4'  # 切换到工作区 4
+    alt-5 = 'workspace 5'  # 切换到工作区 5
+    alt-6 = 'workspace 6'  # 切换到工作区 6
+    alt-7 = 'workspace 7'  # 切换到工作区 7
+    alt-8 = 'workspace 8'  # 切换到工作区 8
+    alt-9 = 'workspace 9'  # 切换到工作区 9
+    alt-b = 'workspace B'  # 切换到工作区 B
+    alt-c = 'workspace C'  # 切换到工作区 C
+    alt-d = 'workspace D'  # 切换到工作区 D
+    alt-q = 'workspace Q'  # 切换到工作区 Q
+    alt-w = 'workspace W'  # 切换到工作区 W
+    alt-e = 'workspace E'  # 切换到工作区 E
+    alt-s = 'workspace S'  # 切换到工作区 S
+
+    # 参见: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
+    # 将窗口移动到指定工作区的快捷键
+    alt-shift-1 = 'move-node-to-workspace 1'  # 将当前窗口移动到工作区 1
+    alt-shift-2 = 'move-node-to-workspace 2'  # 将当前窗口移动到工作区 2
+    alt-shift-3 = 'move-node-to-workspace 3'  # 将当前窗口移动到工作区 3
+    alt-shift-4 = 'move-node-to-workspace 4'  # 将当前窗口移动到工作区 4
+    alt-shift-5 = 'move-node-to-workspace 5'  # 将当前窗口移动到工作区 5
+    alt-shift-6 = 'move-node-to-workspace 6'  # 将当前窗口移动到工作区 6
+    alt-shift-7 = 'move-node-to-workspace 7'  # 将当前窗口移动到工作区 7
+    alt-shift-8 = 'move-node-to-workspace 8'  # 将当前窗口移动到工作区 8
+    alt-shift-9 = 'move-node-to-workspace 9'  # 将当前窗口移动到工作区 9
+    alt-shift-b = 'move-node-to-workspace B'  # 将当前窗口移动到工作区 B
+    alt-shift-c = 'move-node-to-workspace C'  # 将当前窗口移动到工作区 C
+    alt-shift-d = 'move-node-to-workspace D'  # 将当前窗口移动到工作区 D
+    alt-shift-q = 'move-node-to-workspace Q'  # 将当前窗口移动到工作区 Q
+    alt-shift-w = 'move-node-to-workspace W'  # 将当前窗口移动到工作区 W
+    alt-shift-e = 'move-node-to-workspace E'  # 将当前窗口移动到工作区 E
+    alt-shift-s = 'move-node-to-workspace S'  # 将当前窗口移动到工作区 S
+
+    # 参见: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
+    alt-tab = 'workspace-back-and-forth'  # 在当前和上一个工作区之间切换
+    # 参见: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
+    alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'  # 将工作区移动到下一个显示器
+
+    # 参见: https://nikitabobko.github.io/AeroSpace/commands#mode
+    alt-shift-semicolon = 'mode service'  # 进入服务模式
+
+# 'service' 绑定模式声明。
+# 参见: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
+[mode.service.binding]
+    esc = ['reload-config', 'mode main']  # 重新加载配置并返回主模式
+    r = ['flatten-workspace-tree', 'mode main']  # 重置布局并返回主模式
+    f = ['layout floating tiling', 'mode main']  # 在浮动和平铺布局之间切换并返回主模式
+    backspace = ['close-all-windows-but-current', 'mode main']  # 关闭除当前窗口外的所有窗口并返回主模式
+
+    # sticky 尚未支持 https://github.com/nikitabobko/AeroSpace/issues/2
+    #s = ['layout sticky tiling', 'mode main']
+
+    # 窗口连接快捷键
+    alt-shift-h = ['join-with left', 'mode main']   # 与左侧窗口连接并返回主模式
+    alt-shift-j = ['join-with down', 'mode main']   # 与下方窗口连接并返回主模式
+    alt-shift-k = ['join-with up', 'mode main']     # 与上方窗口连接并返回主模式
+    alt-shift-l = ['join-with right', 'mode main']  # 与右侧窗口连接并返回主模式
+
+    # 音量控制快捷键
+    down = 'volume down'                            # 降低音量
+    up = 'volume up'                                # 提高音量
+    shift-down = ['volume set 0', 'mode main']      # 静音并返回主模式

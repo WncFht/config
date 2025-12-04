@@ -1,0 +1,94 @@
+Include /Users/zhangkangning/.ssh/ssh_config
+Host FHT-Ubuntu-4070-fht
+  HostName 100.76.13.56
+  User fht
+  SetEnv TERM=xterm-256color
+
+Host FHT-Ubuntu-4070-leq
+  HostName 100.76.13.56
+  User lili
+  
+Host Xlance
+  HostName js-hpc.aispeech.com.cn
+  User haotian.fang
+  Port 2222
+
+Host Xlance-d6-910B
+  HostName js-hpc.aispeech.com.cn
+  User haotian.fang@haotian.fang@10.24.19.254
+  Port 2222
+
+Host Xlance-d12-910B
+  HostName js-hpc.aispeech.com.cn
+  User haotian.fang@haotian.fang@172.16.3.1
+  Port 2222
+
+Host Xlance-szaic-910B
+  HostName js-hpc.aispeech.com.cn
+  Port 2222
+  IdentityFile /Users/fanghaotian/.ssh/haotian.fang-jumpserver.pem
+  User haotian.fang@fanghaotian@10.212.8.73
+
+Host Xlance-mada-910B
+  HostName js-hpc.aispeech.com.cn
+  User da.ma
+  Port 2222
+
+Host Xlance-mada-szaic-910B
+  HostName js-hpc.aispeech.com.cn
+  Port 2222
+  User da.ma@mada00sx@10.212.4.102
+
+Host EPIC-A800-15400
+  HostName js3.blockelite.cn
+  Port 15400
+  User fanghaotian-20250830
+  
+Host EPIC-A100-13100-root
+  HostName js3.blockelite.cn
+  Port 13100
+  User root
+  
+Host EPIC-A100-13100
+  HostName js3.blockelite.cn
+  Port 13100
+  User fanghaotian-20250830
+    
+Host EPIC-A100-34600
+  HostName js1.blockelite.cn
+  Port 34600
+  User fanghaotian-20250830
+
+Host EPIC-A100-16900
+  HostName js3.blockelite.cn
+  Port 16900
+  User fanghaotian-20250830
+
+Host EPIC-A100-17300
+  HostName js3.blockelite.cn
+  Port 17300
+  User fanghaotian-20250830
+
+Host dev-server
+  HostName 172.171.97.248
+  User haotian
+  Port 3422
+
+Host EPIC-A100-11030
+  HostName 116.148.216.65
+  Port 11030
+  User fanghaotian
+
+Host EPIC-H100
+  HostName 61.175.246.233
+  Port 22
+  User fht
+
+Host DAI-A800-41124
+  HostName 61.135.204.120
+  Port 41124
+  User fanghaotian
+
+Host L40
+  HostName 10.0.0.56
+  User node6
